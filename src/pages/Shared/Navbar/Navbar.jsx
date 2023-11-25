@@ -23,7 +23,7 @@ const Navbar = () => {
                     <ul className="flex gap-6 my-6 mr-8  text-xl  font-semibold">
                         <Link to='/'>Home</Link>
                         <Link to='/addblog'>Available Camps</Link>
-                        <Link to='/allblogs'>Dashboard</Link>
+                        <Link to='/dashboard'>Dashboard</Link>
                         <Link to='/login'>Contact Us</Link>      
                     </ul>
                 </div>

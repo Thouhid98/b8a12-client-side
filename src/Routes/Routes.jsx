@@ -5,6 +5,10 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Dashboard from "../Layout/Dashboard";
+import OrganizerProfile from "../pages/Dashboard/Organizer/OrganizerProfile";
+import AddCamps from "../pages/Dashboard/Organizer/AddCamps";
+import ManageCamps from "../pages/Dashboard/Organizer/ManageCamps";
 
 export const router = createBrowserRouter([
     {
@@ -25,4 +29,28 @@ export const router = createBrowserRouter([
             }
         ]
     },
+
+    {
+        path:'/dashboard',
+        element:<Dashboard></Dashboard>,
+        children:[
+          
+
+            // Organizer Only 
+            {
+                path:'organizer-profile',
+                element:<OrganizerProfile></OrganizerProfile>
+            },
+            {
+                path:'add-a-camp',
+                element:<AddCamps></AddCamps>
+            },
+            {
+                path:'manage-camps',
+                element:<ManageCamps></ManageCamps>
+            }
+        ]
+    }
+
+
 ])
