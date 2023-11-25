@@ -15,7 +15,7 @@ const Navbar = () => {
                         <Link to='/'>Home</Link>
                         <Link to='/addblog'>Available Camps</Link>
                         <Link to='/allblogs'>Dashboard</Link>
-                        <Link to='/menu'>Contact Us</Link>      
+                        <Link to='/login'>Contact Us</Link>      
                     </ul>
                 </div>
 
