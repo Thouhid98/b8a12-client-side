@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import logo from '../../../assets/1633953145689.png'
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
     return (
         <div>
             <div className="navbar fixed z-10  bg-black bg-opacity-30 text-white ">
@@ -21,12 +30,16 @@ const Navbar = () => {
 
 
 
-                <div className="flex-none gap-2 mr-4">
+               {
+                user ? 
+                <>
+                <p>{user.displayName}</p>
+                 <div className="flex-none gap-2 mr-4">
                     
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
                             </div>
                         </label>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black text-white  rounded-box w-52">
@@ -36,10 +49,15 @@ const Navbar = () => {
                                     <span className="badge">New</span>
                                 </a>
                             </li>
-                            <li><a >Logout</a></li>
+                            <li><a onClick={handleSignOut}>Logout</a></li>
                         </ul>
                     </div>
                 </div>
+                </>:
+                <>
+                <button>Login</button>
+                </>
+               }
             </div>
         </div>
     );

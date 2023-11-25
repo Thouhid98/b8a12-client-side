@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
+    // const axiosPublic = useAxiosPublic(); 
     const {
         register,
         handleSubmit,
@@ -10,14 +12,23 @@ const Register = () => {
         formState: { errors },
       } = useForm();
 
-      const {createUser} = useContext(AuthContext)
+      const {createUser, updateUserProfile} = useContext(AuthContext)
 
       const onSubmit = data => {
         console.log(data)
+
+        // Firebase User Creation 
         createUser(data.email, data.password)
         .then(result =>{
             const loggedUser = result.user
             console.log(loggedUser);
+            
+            // Update Profile 
+            updateUserProfile(data.name, data.photoURL)
+            .then(()=>{
+                console.log('user profile updated');
+                reset()
+            })
         })
         .catch(error=>{
             console.log(error);
@@ -48,7 +59,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text text-base font-medium">PhotoURL </span>
                             </label>
-                            <input type="text" {...register("PhotoURL", { required: true })} name='PhotoURL' placeholder="PhotoURL" className="input input-bordered"  />
+                            <input type="text" {...register("photoURL", { required: true })} name='photoURL' placeholder="PhotoURL" className="input input-bordered"  />
                             {errors.PhotoURL && <span className='mt-1 text-red-600'>This field is required</span>}
                         </div>
 
