@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddCamps = () => {
     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, reset } = useForm()
 
     const onSubmit = async(data) =>{
@@ -19,39 +21,35 @@ const AddCamps = () => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        // if(res.data.success){
+        if(res.data.success){
             
-        //     const menuItem = {
-        //         name: data.name,
-        //         category: data.category,
-        //         price: parseFloat(data.price),
-        //         recipe: data.recipe,
-        //         image: res.data.data.display_url
-        //     }
-        //     const menuRes = await axisoSecure.post('/menu', menuItem)
-        //     console.log(menuRes.data);
-        //     if(menuRes.data.acknowledged == true){
+            const campdata = {
+                name: data.name,           
+                campfees: parseInt(data.campfees),
+                location: data.location,
+                specialservice: data.specialservice,
+                professionals: data.professionals,
+                targetaudience: data.targetaudience,
+                campdes: data.campdes,
+                date: data.date,
+                image: res.data.data.display_url
+            }
+            const campRes = await axiosSecure.post('/add-a-camp', campdata)
+            console.log(campRes.data);
+            if(campRes.data.acknowledged == true){
                 
-        //         reset()
-        //         Swal.fire({
-        //             position: "top-end",
-        //             icon: "success",
-        //             title: `${data.name} added to the menu`,
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //           });
-        //     }
-        // }
+                reset()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data.name} added to the camp`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        }
         console.log(res.data);
     }
-
-
-
-
-
-
-
-
 
     return (
         <div>
