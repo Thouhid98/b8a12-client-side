@@ -88,10 +88,19 @@ const Allusers = () => {
                                     {
                                         user.role ==='admin' ? 'Admin' :
                                         <th>
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-secondary btn-xs">Make Admin </button>
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-primary btn-xs">Make Admin </button>
                                         </th>
                                     }
                                 </td>
+
+                                {/* <td>
+                                    {
+                                        user.role ==='admin' ? 'Admin' :
+                                        <th>
+                                        <button onClick={() => handleMakeOrganizer(user)} className="btn btn-primary btn-xs">Make Admin </button>
+                                        </th>
+                                    }
+                                </td> */}
 
                                 <td>
                                     <th>
