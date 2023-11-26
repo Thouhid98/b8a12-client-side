@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import OrganizerProfile from "../pages/Dashboard/Organizer/OrganizerProfile";
 import AddCamps from "../pages/Dashboard/Organizer/AddCamps";
 import ManageCamps from "../pages/Dashboard/Organizer/ManageCamps";
+import Allusers from "../pages/Dashboard/Admin/Allusers";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
         path:'/dashboard',
         element:<Dashboard></Dashboard>,
         children:[
+            // Admin Routes 
+            {
+                path:'allusers',
+                element:<Allusers></Allusers>
+            },
           
 
             // Organizer Only 

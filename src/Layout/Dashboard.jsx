@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-    const organizer = true;
+    const organizer = false;
+    const admin = true
     return (
         <>
             <div className='flex'>
@@ -10,11 +11,11 @@ const Dashboard = () => {
                         {
                             organizer ?
                                 <>
-                                    <li className="text-white font-semibold text-base">
+                                    <li >
                                         <NavLink to='/dashboard/organizer-profile'>
                                             Organizer Home</NavLink>
                                     </li>
-                                    <li className="text-white font-semibold text-base">
+                                    <li >
                                         <NavLink to='/dashboard/add-a-camp'>
 
                                             Add Camps</NavLink>
@@ -34,31 +35,26 @@ const Dashboard = () => {
                                 </>
                                 :
                                 <>
-                                    <li>
-                                        <NavLink to="/dashboard/userHome">
 
-                                            User Home</NavLink>
-                                    </li>
-
-                                    <li>
-                                        <NavLink to="/dashboard/cart">
-
-                                            My Cart </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/dashboard/review">
-
-                                            Add a Review</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/dashboard/paymenthistory">
-
-                                            Payment History</NavLink>
-                                    </li>
                                 </>
                         }
 
-                       
+                        {
+                            admin ? <>
+                                <li>
+                                    <NavLink to='/'>
+                                       Admin Home</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/allusers'>
+                                        Manage Users</NavLink>
+                                </li>
+                            </>
+                                :
+                                <></>
+                        }
+
+
                         <div className='divider'></div>
 
                         <li>
