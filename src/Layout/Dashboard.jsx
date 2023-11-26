@@ -1,8 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-    const organizer = false;
-    const admin = true
+    const organizer = true;
+    const admin = false
     return (
         <>
             <div className='flex'>

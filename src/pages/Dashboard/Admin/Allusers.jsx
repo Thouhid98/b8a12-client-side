@@ -28,6 +28,22 @@ const Allusers = () => {
         })
     }
 
+    const handleMakeOrganizer = user =>{
+        axiosSecure.patch(`/users/organizer/${user._id}`)
+        .then(res =>{
+            console.log(res.data);
+            if(res.data.modifiedCount>0){
+                refetch();
+                Swal.fire({
+                    title: "Make Organizer Successfull!",
+                    text: `${user.name} is an Organizer Now`,
+                    icon: "success",
+                    timer:2500
+                });
+            }
+        })
+    }
+
     // const handleDeleteUser = user => {
     //     Swal.fire({
     //         title: "Are you sure?",
@@ -74,7 +90,7 @@ const Allusers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Action</th>
+                            <th>Role2</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,23 +100,23 @@ const Allusers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+
                                 <td>
                                     {
                                         user.role ==='admin' ? 'Admin' :
                                         <th>
                                         <button onClick={() => handleMakeAdmin(user)} className="btn btn-primary btn-xs">Make Admin </button>
                                         </th>
-                                    }
+                                    }                            
                                 </td>
-
-                                {/* <td>
+                                <td>
                                     {
-                                        user.role ==='admin' ? 'Admin' :
+                                        user.role ==='organizer' ? 'Organizer' :
                                         <th>
-                                        <button onClick={() => handleMakeOrganizer(user)} className="btn btn-primary btn-xs">Make Admin </button>
+                                        <button onClick={() => handleMakeOrganizer(user)} className="btn btn-primary btn-xs">Make Organizer </button>
                                         </th>
                                     }
-                                </td> */}
+                                </td>
 
                                 <td>
                                     <th>
