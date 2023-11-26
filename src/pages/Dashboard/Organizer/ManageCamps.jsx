@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useCamp from "../../../hooks/useCamp";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageCamps = () => {
     const axiosSecure = useAxiosSecure()
@@ -52,8 +53,9 @@ const ManageCamps = () => {
                                     </th>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Date & Time</th>
                                     <th>Price</th>
-                                    {/* <th>Update</th> */}
+                                    <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -80,13 +82,17 @@ const ManageCamps = () => {
                                         <td>
                                             {item.name}
                                         </td>
+                                        <td>
+                                            {item.date}
+                                        </td>
                                         <td>$ {item.campfees}</td>
 
-                                        {/* <Link to={`/dashboard/updateitem/${item._id}`}>
+                                        <Link to={`/dashboard/updatecamps/${item._id}`}>
                                             <th>
-                                                <button className="btn btn-secondary btn-sm">Update</button>
+                                                <button className="btn btn-primary my-5 btn-sm">Update</button>
                                             </th>
-                                        </Link> */}
+                                        </Link>
+
 
                                         <th>
                                             <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button>
