@@ -73,7 +73,7 @@ const Login = () => {
                             </div>
 
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover text-base ml-40 text-center">Or Sign In with</a>
+                                <a href="/register" className="label-text-alt link link-hover text-base ml-40 text-center">Don't Have an Account?</a>
                             </label>
                         </form>
 
