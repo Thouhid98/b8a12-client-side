@@ -3,10 +3,13 @@ import logo from '../../../assets/1633953145689.png'
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
+import useOrganizer from "../../../hooks/useOrganizer";
 
 const Navbar = () => {
     const [isAdmin] = useAdmin()
-    console.log('Navbar admin', isAdmin);
+    // console.log('Navbar admin', isAdmin);
+    const [isOrganizer] = useOrganizer();
+    console.log('Navbar organizer', isOrganizer);
 
     const {user, logOut} = useContext(AuthContext)
 
@@ -27,7 +30,13 @@ const Navbar = () => {
                     <ul className="flex gap-6 my-6 mr-8  text-xl  font-semibold">
                         <Link to='/'>Home</Link>
                         <Link to='/addblog'>Available Camps</Link>
-                        <Link to='/dashboard/organizer-profile'>Dashboard</Link>
+                        {
+                            isAdmin ? <Link to='/dashboard/admin-profile'>Dashboard</Link>:''
+                        }
+                        {
+                            isOrganizer ? <Link to='/dashboard/organizer-profile'>Dashboard</Link>:''
+
+                        }
 
                         <Link to='/login'>Contact Us</Link>      
                     </ul>

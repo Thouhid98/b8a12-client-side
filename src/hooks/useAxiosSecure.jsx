@@ -7,17 +7,13 @@ const axiosSecure = axios.create({
     baseURL:'http://localhost:5000'
 })
 
-// const useAxiosSecure = () => {
-//     return axiosSecure;
-// };
-
 const useAxiosSecure = () => {
     const navigate = useNavigate();
     const {logOut} = useContext(AuthContext)
     
     axiosSecure.interceptors.request.use(function (config) {
         const token = localStorage.getItem('access-token')
-        console.log('Stopped By Interseptor', { token });
+        // console.log('Stopped By Interseptor', { token });
         config.headers.authorization = `Bearer ${token}`
         return config;
     },
