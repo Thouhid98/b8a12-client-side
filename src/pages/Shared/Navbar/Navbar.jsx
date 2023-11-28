@@ -24,6 +24,7 @@ const Navbar = () => {
                         <Link to='/'>Home</Link>
                         <Link to='/addblog'>Available Camps</Link>
                         <Link to='/dashboard/organizer-profile'>Dashboard</Link>
+
                         <Link to='/login'>Contact Us</Link>      
                     </ul>
                 </div>

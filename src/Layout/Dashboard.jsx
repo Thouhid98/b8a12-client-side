@@ -9,8 +9,8 @@ const Dashboard = () => {
     
     // const {name, }
     const organizer = false;
-    const admin = false
-    const newuser = true
+    const admin = true
+    const newuser = false
     return (
         <>
             <div className='flex'>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                         {
                             newuser ? <>
                                 <li>
-                                    <NavLink to='/'>
+                                    <NavLink to={`/dashboard/participant-profile/${user?.email}`}>
                                        User Profile</NavLink>
                                 </li>
                                 <li>

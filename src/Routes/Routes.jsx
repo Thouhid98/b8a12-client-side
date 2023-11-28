@@ -14,6 +14,7 @@ import UpdateCamps from "../pages/Dashboard/Organizer/UpdateCamps";
 import CampDetails from "../pages/Home/PopularCamps/CampDetails/CampDetails";
 import ManageRegisterCamp from "../pages/Dashboard/Organizer/ManageRegisterCamp";
 import RegisteredCamps from "../pages/Dashboard/User/RegisteredCamps";
+import UserProfile from "../pages/Dashboard/User/UserProfile";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,11 @@ export const router = createBrowserRouter([
         children: [
 
             // User Only 
+            {
+                path:'participant-profile/:email',
+                element:<UserProfile></UserProfile>
+            },
+
             {
                 path: 'registered-camps/:email',
                 element: <RegisteredCamps></RegisteredCamps>,
