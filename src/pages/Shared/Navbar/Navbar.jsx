@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import logo from '../../../assets/1633953145689.png'
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
+    const [isAdmin] = useAdmin()
+    console.log('Navbar admin', isAdmin);
+
     const {user, logOut} = useContext(AuthContext)
 
     const handleSignOut = () => {
