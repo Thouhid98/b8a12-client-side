@@ -1,8 +1,16 @@
+import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+
 
 const Dashboard = () => {
-    const organizer = true;
+    const {user} = useContext(AuthContext)
+    const {email} = user
+    
+    // const {name, }
+    const organizer = false;
     const admin = false
+    const newuser = true
     return (
         <>
             <div className='flex'>
@@ -48,6 +56,25 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to='/dashboard/allusers'>
                                         Manage Users</NavLink>
+                                </li>
+                            </>
+                                :
+                                <></>
+                        }
+
+                        {
+                            newuser ? <>
+                                <li>
+                                    <NavLink to='/'>
+                                       User Profile</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to={`/dashboard/registered-camps/${email}`}>
+                                        Registered Camps</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/'>
+                                       Payment History</NavLink>
                                 </li>
                             </>
                                 :

@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageRegisterCamp = () => {
     const axiosSecure = useAxiosSecure()
-    const [register, setRegister] = useState(null)
+    const [register, setRegister] = useState([])
     console.log(register);
 
     useEffect(() => {
@@ -39,7 +38,7 @@ const ManageRegisterCamp = () => {
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Date & Time</th>
-                                    <th>Price</th>
+                                    <th>Payment Status</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -70,7 +69,7 @@ const ManageRegisterCamp = () => {
                                         <td>
                                             {item.date}
                                         </td>
-                                        <td>$ {item.campfees}</td>
+                                        <td>$ {item.payment}</td>
 
                                         {/* <Link to={`/dashboard/updatecamps/${item._id}`}>
                                             <th>

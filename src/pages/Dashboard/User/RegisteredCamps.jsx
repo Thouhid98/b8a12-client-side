@@ -1,40 +1,27 @@
-import Swal from "sweetalert2";
-import useCamp from "../../../hooks/useCamp";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
-const ManageCamps = () => {
+const RegisteredCamps = () => {
+    // const campData = useLoaderData();
+    // console.log(campData);
     const axiosSecure = useAxiosSecure()
-    const [camps, , refetch] = useCamp()
-    console.log(camps);
+    const [register, setRegister] = useState([])
+    console.log(register);
+    const {user} = useContext(AuthContext)
 
-    const handleDeleteItem = (id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                axiosSecure.delete(`/delete-camp/${id}`)
-                    .then(res => {
-                        console.log(res.data);
-                        if (res.data.deletedCount > 0) {
-                            refetch();
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    })
-            }
-        });
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axiosSecure.get(`/registered-camps/${user.email}`);
+            setRegister(response.data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
 
     return (
@@ -42,7 +29,7 @@ const ManageCamps = () => {
             <div>
                 <div className=''>
 
-                    <h2 className="text-2xl text-black font-bold">All Camps: {camps.length}</h2>
+                    <h2 className="text-2xl font-bold text-black">Registered Camps: {register.length}</h2>
                     <div className="overflow-x-auto">
                         <table className="table my-4">
                             {/* head */}
@@ -54,7 +41,7 @@ const ManageCamps = () => {
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Date & Time</th>
-                                    <th>Price</th>
+                                    <th>Payment Status</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -63,7 +50,7 @@ const ManageCamps = () => {
                                 {/* row 1 */}
 
                                 {
-                                    camps?.map((item, index) => <tr key={item._id}>
+                                    register?.map((item, index) => <tr key={item._id}>
                                         <th>
                                             <label>
                                                 {index + 1}
@@ -85,17 +72,17 @@ const ManageCamps = () => {
                                         <td>
                                             {item.date}
                                         </td>
-                                        <td>$ {item.campfees}</td>
+                                        <td>$ {item.payment}</td>
 
-                                        <Link to={`/dashboard/updatecamps/${item._id}`}>
+                                        {/* <Link to={`/dashboard/updatecamps/${item._id}`}>
                                             <th>
                                                 <button className="btn btn-primary my-5 btn-sm">Update</button>
                                             </th>
-                                        </Link>
+                                        </Link> */}
 
 
                                         <th>
-                                            <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button>
+                                            {/* <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button> */}
                                         </th>
                                     </tr>)
                                 }
@@ -114,4 +101,4 @@ const ManageCamps = () => {
     );
 };
 
-export default ManageCamps;
+export default RegisteredCamps;
