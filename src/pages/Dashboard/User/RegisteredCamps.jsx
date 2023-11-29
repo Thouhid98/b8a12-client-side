@@ -1,27 +1,83 @@
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+// import { useForm } from "react-hook-form";
 
 const RegisteredCamps = () => {
     // const campData = useLoaderData();
     // console.log(campData);
     const axiosSecure = useAxiosSecure()
-    const [register, setRegister] = useState([])
-    console.log(register);
-    const {user} = useContext(AuthContext)
+    const [campRegister, setRegister] = useState([])
+    // console.log(campRegister);
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await axiosSecure.get(`/registered-camps/${user.email}`);
-            setRegister(response.data);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                const response = await axiosSecure.get(`/registered-camps/${user.email}`);
+                setRegister(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
-    
+
         fetchData();
-      }, []);
+    }, []);
+
+
+    // const { register, handleSubmit, reset } = useForm()
+
+    // const onSubmit = async (data, e) => {
+    //     e.preventDefault();
+    //     document.getElementById('my_modal_1').close();
+
+    //     console.log(data);
+
+    // }
+    
+    
+    const handleFeedback = (e, campname) =>{
+        console.log('campId', campname);
+
+        document.getElementById('my_modal_1').close();
+        e.preventDefault();
+        const form = e.target;
+        const feedback = form.feedback.value;
+        const rating = form.rating.value;
+        console.log(feedback, rating);
+
+        //
+
+        
+        if (user && user.email) {
+            
+            const feedBack = {
+                
+                feedback: feedback,
+                rating: parseInt(rating),
+                name: name,
+                email: user.email,
+
+            }
+            axiosSecure.post('/feedback-and-rating', feedBack)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                       
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: 'Feedback Successfull',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+        }
+    }
+
 
 
     return (
@@ -29,7 +85,7 @@ const RegisteredCamps = () => {
             <div>
                 <div className=''>
 
-                    <h2 className="text-2xl font-bold text-black">Registered Camps: {register.length}</h2>
+                    <h2 className="text-2xl font-bold text-black">Registered Camps: {campRegister.length}</h2>
                     <div className="overflow-x-auto">
                         <table className="table my-4">
                             {/* head */}
@@ -42,7 +98,7 @@ const RegisteredCamps = () => {
                                     <th>Name</th>
                                     <th>Date & Time</th>
                                     <th>Payment Status</th>
-                                    <th>Update</th>
+                                    <th>Review</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -50,7 +106,7 @@ const RegisteredCamps = () => {
                                 {/* row 1 */}
 
                                 {
-                                    register?.map((item, index) => <tr key={item._id}>
+                                    campRegister?.map((item, index) => <tr key={item._id}>
                                         <th>
                                             <label>
                                                 {index + 1}
@@ -74,16 +130,63 @@ const RegisteredCamps = () => {
                                         </td>
                                         <td>$ {item.payment}</td>
 
-                                        {/* <Link to={`/dashboard/updatecamps/${item._id}`}>
+                                        <Link to={`/dashboard/ratings/${item._id}`}>
                                             <th>
-                                                <button className="btn btn-primary my-5 btn-sm">Update</button>
+                                                <button className="btn btn-primary my-5 btn-sm">Review</button>
                                             </th>
-                                        </Link> */}
+                                        </Link>
+
+
+                                        {/* <th> */}
+                                            {/* modal  */}
+                                            {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                            {/* <button className="btn my-3  bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1', item.campname).showModal()}>Review</button>
+                                            <dialog id="my_modal_1" className="modal">
+                                                <div className="modal-box">
+                                                    <h3 className="font-bold text-lg mb-3">Want to Give Feedbacks!</h3>
+
+
+                                                    <div className="modal-action ">
+
+                                                        <form onSubmit={(e) => handleFeedback(e, item.campname)} method="dialog">
+
+                                                            <div className="lg:-ml-[360px] -mt-4">
+                                                                <label className="label">
+                                                                    <span className="label-text">Give Feedback*</span>
+                                                                </label>
+
+                                                
+                                                                
+                                                                <input name="feedback" type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" />
+
+                                                            </div>
+
+                                                            <div className="lg:-ml-[360px] ">
+                                                                <label className="label">
+                                                                    <span className="label-text">Rating</span>
+                                                                </label>
+
+                                                               
+                                                                <input name="rating" type="number" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" />
+                                                            </div>
+
+
+                                                            <button className="btn text-white bg-orange-500">Submit</button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </dialog>
+                                        </th> */}
+
 
 
                                         <th>
                                             {/* <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button> */}
+                                            <button className="btn btn-warning text-white">Pay</button>
                                         </th>
+                                        
                                     </tr>)
                                 }
 

@@ -17,6 +17,8 @@ import RegisteredCamps from "../pages/Dashboard/User/RegisteredCamps";
 import UserProfile from "../pages/Dashboard/User/UserProfile";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import ProfessionalsProfile from "../pages/Dashboard/Professionals/ProfessionalsProfile";
+import ContactUs from "../pages/ContactUs/ContactUs";
+import UserReview from "../pages/Dashboard/User/UserReview";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path:'/contact-us',
+                element:<ContactUs></ContactUs>
             },
             {
                 path: '/login',
@@ -56,6 +62,12 @@ export const router = createBrowserRouter([
             {
                 path:'participant-profile/:email',
                 element:<UserProfile></UserProfile>
+            },
+
+            {
+                path:'ratings/:id',
+                element:<UserReview></UserReview>,
+                loader: ({ params }) => fetch(`http://localhost:5000/feedback/${params.id}`)
             },
 
             {

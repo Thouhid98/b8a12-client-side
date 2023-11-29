@@ -76,7 +76,7 @@ const CampDetails = () => {
 
                         {/* modal  */}
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="btn my-3 btn-primary bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Join Camp</button>
+                        <button className="btn my-3  bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Join Camp</button>
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">
                                 <h3 className="font-bold text-lg">Want to Join The Camp!</h3>

@@ -18,7 +18,7 @@ const SinglePopular = ({ camp }) => {
                     <div className="card-actions justify-end">
 
                         <Link to={`/camp-details/${_id}`}>
-                            <button className="btn btn-primary">View Details</button>
+                            <button className="btn  text-white bg-blue-400">View Details</button>
                         </Link>
                     </div>
                 </div>

@@ -84,10 +84,13 @@ const Dashboard = () => {
                                 <NavLink to={'/dashboard/user-profile'}>
                                         User Profile</NavLink>
                                 </li> */}
+                                
                                 <li>
                                     <NavLink to={`/dashboard/registered-camps/${user?.email}`}>
                                         Registered Camps</NavLink>
                                 </li>
+
+                                
                                 <li>
                                     <NavLink to='/'>
                                         Payment History</NavLink>

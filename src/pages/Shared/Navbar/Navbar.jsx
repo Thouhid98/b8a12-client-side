@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className="navbar fixed z-10  bg-black bg-opacity-30 text-white ">
                 <div className="flex-1">
                     <img className="w-20" src={logo} alt="" />
-                    <p className="ml-2 text-4xl font-bold"><span className="text-4xl text-blue-400">C</span>amp <span className="text-4xl text-orange-400">S</span>elx</p>
+                    <p className="ml-2 text-4xl font-bold"><span className="text-4xl text-blue-400">M</span>edi <span className="text-4xl text-orange-400">C</span>amp</p>
                 </div>
 
                 <div>
@@ -67,7 +67,7 @@ const Navbar = () => {
                                 : ''
                         }
 
-                        <Link to='/login'>Contact Us</Link>
+                        <Link to='/contact-us'>Contact Us</Link>
                     </ul>
                 </div>
 

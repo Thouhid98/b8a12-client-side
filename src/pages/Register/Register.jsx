@@ -107,7 +107,7 @@ const Register = () => {
 
                         {/* <Link to='/register'> */}
                         <div className="form-control mt-6">
-                            <button  className="btn bg-[#D99904] text-white">SignUp</button>
+                            <button  className="btn bg-orange-400 text-white">SignUp</button>
                         </div>
 
                         <label className="label">
