@@ -1,23 +1,24 @@
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import useOrganizer from "../hooks/useOrganizer";
+import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
-    const {user} = useContext(AuthContext)
-    const {email} = user
-    
-    // const {name, }
-    const organizer = false;
-    const admin = true
-    const newuser = false
+    const { user } = useContext(AuthContext)
+    // const {email} = user
+
+    const [isAdmin] = useAdmin()
+    const [isOrganizer] = useOrganizer()
+
     return (
         <>
             <div className='flex'>
                 <div className='w-64 min-h-screen bg-[#D99904]'>
                     <ul className='menu p-4'>
                         {
-                            organizer ?
+                            user && isOrganizer ?
                                 <>
                                     <li >
                                         <NavLink to='/dashboard/organizer-profile'>
@@ -36,10 +37,7 @@ const Dashboard = () => {
                                         <NavLink to='/dashboard/manage-registered-camps'>
                                             Registered Camps </NavLink>
                                     </li>
-                                    <li>
-                                        <NavLink to='/dashboard/users'>
-                                            All Users</NavLink>
-                                    </li>
+                                    
                                 </>
                                 :
                                 <>
@@ -48,10 +46,10 @@ const Dashboard = () => {
                         }
 
                         {
-                            admin ? <>
+                            user && isAdmin ? <>
                                 <li>
-                                    <NavLink to='/'>
-                                       Admin Home</NavLink>
+                                    <NavLink to='/dashboard/admin-profile'>
+                                        Admin Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/allusers'>
@@ -63,23 +61,28 @@ const Dashboard = () => {
                         }
 
                         {
-                            newuser ? <>
+                            user && !isAdmin && !isOrganizer?
+                             <>
                                 <li>
                                     <NavLink to={`/dashboard/participant-profile/${user?.email}`}>
-                                       User Profile</NavLink>
+                                        User Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={`/dashboard/registered-camps/${email}`}>
+                                    <NavLink to={`/dashboard/registered-camps/${user?.email}`}>
                                         Registered Camps</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/'>
-                                       Payment History</NavLink>
+                                        Payment History</NavLink>
                                 </li>
-                            </>
-                                :
-                                <></>
-                        }
+                                <li>
+                                    <NavLink to='/'>
+                                        Add Review</NavLink>
+                                </li>
+                            </>:''
+                        }        
+                         
+                        
 
 
                         <div className='divider'></div>
@@ -88,10 +91,7 @@ const Dashboard = () => {
                             <NavLink to='/'>
                                 Home</NavLink>
                         </li>
-                        <li>
-                            <NavLink to='/order/salad'>
-                                Menu</NavLink>
-                        </li>
+                        
                         <li>
                             <NavLink to='/order/salad'>
                                 Contact</NavLink>

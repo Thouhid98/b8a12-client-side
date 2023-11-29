@@ -3,7 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-const useAdmin = () => {
+const useOrganizer = () => {
     const {user, loading }= useContext(AuthContext)
     const axiosSecure = useAxiosSecure();
     const {data: isOrganizer, isPending: isOrganizerLoading } = useQuery({
@@ -18,4 +18,4 @@ const useAdmin = () => {
     return [isOrganizer, isOrganizerLoading]
 };
 
-export default useAdmin;
+export default useOrganizer;

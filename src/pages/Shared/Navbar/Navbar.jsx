@@ -11,7 +11,7 @@ const Navbar = () => {
     const [isOrganizer] = useOrganizer();
     console.log('Navbar organizer', isOrganizer);
 
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
     const handleSignOut = () => {
         logOut()
@@ -29,49 +29,69 @@ const Navbar = () => {
                 <div>
                     <ul className="flex gap-6 my-6 mr-8  text-xl  font-semibold">
                         <Link to='/'>Home</Link>
-                        <Link to='/addblog'>Available Camps</Link>
+
                         {
-                            isAdmin ? <Link to='/dashboard/admin-profile'>Dashboard</Link>:''
+                            isAdmin && user ?
+                                <>
+                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/dashboard/admin-profile'>Dashboard</Link>
+                                </>
+                                : ''
                         }
                         {
-                            isOrganizer ? <Link to='/dashboard/organizer-profile'>Dashboard</Link>:''
+                            user && isOrganizer ?
+                                <>
+                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/dashboard/organizer-profile'>Dashboard</Link>
+                                </> : ''
 
                         }
+                        {
+                            user && !isAdmin && !isOrganizer ?
+                                <>
+                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/dashboard/user-profile'>Dashboard</Link>
+                                </>
+                                : ''
+                        }
 
-                        <Link to='/login'>Contact Us</Link>      
+                        <Link to='/login'>Contact Us</Link>
                     </ul>
                 </div>
 
 
 
-               {
-                user ? 
-                <>
-                <p>{user.displayName}</p>
-                 <div className="flex-none gap-2 mr-4">
-                    
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                {
+                    user ?
+                        <>
+                            <p className="text-xl font-bold text-white">{user.displayName}</p>
+                            <div className="flex-none gap-2 mr-4">
+
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black text-white  rounded-box w-52">
+
+                                        <li><a onClick={handleSignOut}>Logout
+                                            <span className="badge">New</span>
+                                        </a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black text-white  rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a onClick={handleSignOut}>Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-                </>:
-                <>
-                <button>Login</button>
-                </>
-               }
+                        </> :
+                        <>
+                            <Link to='/login'>
+                                <button className="btn bg-white text-lg text-orange-400   mr-4">Login</button>
+                            </Link>
+
+                            <Link to='/register'>
+                                <button className="btn bg-blue-400 text-lg text-white mr-4">SignUp</button>
+                            </Link>
+                        </>
+                }
             </div>
         </div>
     );

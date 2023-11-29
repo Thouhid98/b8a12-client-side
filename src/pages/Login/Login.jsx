@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const {signinUser} = useContext(AuthContext)
+    const { signinUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleLogin = e => {
@@ -13,28 +13,28 @@ const Login = () => {
         const password = e.target.password.value;
         console.log(email, password);
 
-         // user SignIn firebase 
-         signinUser(email, password)
-         .then(result => {
-             console.log(result.user);
-             Swal.fire({
-                 title: 'Success!',
-                 text: 'Login Successfull',
-                 icon: 'success',
-                 confirmButtonText: 'Cool'
-             })
-             navigate('/');
-             e.target.reset();
-         })
-         .catch(error => {
-             console.log(error);
-             Swal.fire({
-                 title: 'warning!',
-                 text: 'Invalid UserId or Password',
-                 icon: 'warning',
-                 confirmButtonText: 'Cool'
-             })
-         })
+        // user SignIn firebase 
+        signinUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Login Successfull',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+                navigate('/');
+                e.target.reset();
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    title: 'warning!',
+                    text: 'Invalid UserId or Password',
+                    icon: 'warning',
+                    confirmButtonText: 'Cool'
+                })
+            })
     }
 
     return (
@@ -65,7 +65,7 @@ const Login = () => {
 
                             </div>
 
-                           
+
 
                             {/* <Link to='/login'> */}
                             <div className="form-control mt-6">
@@ -77,10 +77,10 @@ const Login = () => {
                             </label>
                         </form>
 
-                        {/* <SocialLogin></SocialLogin> */}
-                        <div>
 
-                          
+
+                        <div>
+                            {/* <SocialLogin></SocialLogin> */}
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ const UserProfile = () => {
             </div>
 
             <div className="lg:ml-[410px]">
-                <p className="text-3xl mb-2"><span className="text-3xl text-black font-bold">Name:</span> {userProfile.name}</p>
+                <p className="text-3xl mb-2 "><span className="text-3xl text-black font-bold">Name:</span> {userProfile.name}</p>
                 <p className="text-3xl mb-2 -ml-16"><span className="text-3xl text-black font-bold">Email:</span> {userProfile.email}</p>
             </div>
         </div>
