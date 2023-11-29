@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useOrganizer from "../hooks/useOrganizer";
 import useAdmin from "../hooks/useAdmin";
+import useProfessionals from "../hooks/useProfessionals";
 
 
 const Dashboard = () => {
@@ -11,6 +12,7 @@ const Dashboard = () => {
 
     const [isAdmin] = useAdmin()
     const [isOrganizer] = useOrganizer()
+    const [isProfessionals] = useProfessionals()
 
     return (
         <>
@@ -46,6 +48,17 @@ const Dashboard = () => {
                         }
 
                         {
+                            user && isProfessionals ? <>
+                                <li>
+                                    <NavLink to='/dashboard/Professionals-profile'>
+                                    Professionals Profile</NavLink>
+                                </li>
+                                
+                            </>
+                                :
+                                <></>
+                        }
+                        {
                             user && isAdmin ? <>
                                 <li>
                                     <NavLink to='/dashboard/admin-profile'>
@@ -61,12 +74,16 @@ const Dashboard = () => {
                         }
 
                         {
-                            user && !isAdmin && !isOrganizer?
+                            user && !isAdmin && !isOrganizer && !isProfessionals ?
                              <>
                                 <li>
                                     <NavLink to={`/dashboard/participant-profile/${user?.email}`}>
                                         User Profile</NavLink>
                                 </li>
+                                {/* <li>
+                                <NavLink to={'/dashboard/user-profile'}>
+                                        User Profile</NavLink>
+                                </li> */}
                                 <li>
                                     <NavLink to={`/dashboard/registered-camps/${user?.email}`}>
                                         Registered Camps</NavLink>

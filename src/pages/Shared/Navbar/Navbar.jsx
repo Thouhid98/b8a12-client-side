@@ -4,12 +4,16 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
 import useOrganizer from "../../../hooks/useOrganizer";
+import useProfessionals from "../../../hooks/useProfessionals";
 
 const Navbar = () => {
     const [isAdmin] = useAdmin()
     // console.log('Navbar admin', isAdmin);
     const [isOrganizer] = useOrganizer();
     console.log('Navbar organizer', isOrganizer);
+
+    const [isProfessionals] = useProfessionals()
+    console.log('Nav professionals', isProfessionals );
 
     const { user, logOut } = useContext(AuthContext)
 
@@ -33,7 +37,7 @@ const Navbar = () => {
                         {
                             isAdmin && user ?
                                 <>
-                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/available-camps'>Available Camps</Link>
                                     <Link to='/dashboard/admin-profile'>Dashboard</Link>
                                 </>
                                 : ''
@@ -41,15 +45,23 @@ const Navbar = () => {
                         {
                             user && isOrganizer ?
                                 <>
-                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/available-camps'>Available Camps</Link>
                                     <Link to='/dashboard/organizer-profile'>Dashboard</Link>
                                 </> : ''
 
                         }
                         {
-                            user && !isAdmin && !isOrganizer ?
+                            user && isProfessionals ?
                                 <>
-                                    <Link to='/addblog'>Available Camps</Link>
+                                    <Link to='/available-camps'>Available Camps</Link>
+                                    <Link to='/dashboard/professionals-profile'>Dashboard</Link>
+                                </> : ''
+
+                        }
+                        {
+                            user && !isAdmin && !isOrganizer && !isProfessionals ?
+                                <>
+                                    <Link to='/available-camps'>Available Camps</Link>
                                     <Link to='/dashboard/user-profile'>Dashboard</Link>
                                 </>
                                 : ''

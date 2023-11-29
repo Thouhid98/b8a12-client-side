@@ -1,19 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
+// import useProfessionals from "../../../hooks/useProfessionals";
 
-const UserProfile = () => {
 
+const ProfessionalsProfile = () => {
+    
     const axiosSecure = useAxiosSecure()
-    const [userProfile, setuserProfile] = useState([])
-    console.log(userProfile);
+    const [professionals, setProfessionals] = useState([])
+    console.log(professionals);
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosSecure.get(`/participant-profile/${user.email}`);
-                setuserProfile(response.data);
+                const response = await axiosSecure.get(`/professionals-profile/${user.email}`);
+                setProfessionals(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -21,17 +23,18 @@ const UserProfile = () => {
 
         fetchData();
     }, []);
-    return (
-    
-        <div>
 
+
+    return (
+        <div>
+           
             <div className="flex my-8 lg:ml-[350px] flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
-                <img src={userProfile.photo} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+                <img src={professionals.photo} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                 <div className="space-y-4 text-center divide-y dark:divide-gray-700">
                     <div className="my-2 space-y-1">
-                        <h2 className="text-xl font-semibold sm:text-2xl">{userProfile.name}</h2>
-                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">Participant </p>
-                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.email} </p>
+                        <h2 className="text-xl font-semibold sm:text-2xl">{professionals.name}</h2>
+                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">Healthcare Professionals </p>
+                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">{professionals.email} </p>
                     </div>
                     <div className="flex justify-center pt-2 space-x-4 align-center">
                         <a rel="noopener noreferrer" href="#" aria-label="GitHub" className="p-2 rounded-md dark:text-gray-100 hover:dark:text-violet-400">
@@ -61,4 +64,4 @@ const UserProfile = () => {
     );
 };
 
-export default UserProfile;
+export default ProfessionalsProfile;
