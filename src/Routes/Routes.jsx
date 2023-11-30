@@ -20,6 +20,7 @@ import ProfessionalsProfile from "../pages/Dashboard/Professionals/Professionals
 import ContactUs from "../pages/ContactUs/ContactUs";
 import UserReview from "../pages/Dashboard/User/UserReview";
 import Allreviews from "../pages/Dashboard/User/Allreviews";
+import ProfileUpdate from "../pages/Dashboard/User/ProfileUpdate";
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +60,12 @@ export const router = createBrowserRouter([
             {
                 path:'user-profile',
                 element:<UserProfile></UserProfile>
+            },
+            {
+                path:'userupdate-profile/:email',
+                element:<ProfileUpdate></ProfileUpdate>,
+                loader: ({ params }) => fetch(`http://localhost:5000/updateuser-profile/${params.email}`)
+
             },
             {
                 path:'participant-profile/:email',

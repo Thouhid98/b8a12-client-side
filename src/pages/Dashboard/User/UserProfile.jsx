@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
 
@@ -32,6 +33,12 @@ const UserProfile = () => {
                         <h2 className="text-xl font-semibold sm:text-2xl">{userProfile.name}</h2>
                         <p className="px-5 text-xs sm:text-base dark:text-gray-400">Participant </p>
                         <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.email} </p>
+
+                    <Link to={`/dashboard/userupdate-profile/${user.email}`}>
+                    <button className="btn btn-sm mt-4 bg-blue-400 text-white">Edit Profile</button>
+                    </Link>
+
+
                     </div>
                     <div className="flex justify-center pt-2 space-x-4 align-center">
                         <a rel="noopener noreferrer" href="#" aria-label="GitHub" className="p-2 rounded-md dark:text-gray-100 hover:dark:text-violet-400">

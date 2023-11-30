@@ -6,13 +6,14 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-// import { Rating } from '@smastrom/react-rating'
-// import '@smastrom/react-rating/style.css'
+
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 
 import { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-
+import {FaHands} from "react-icons/fa"
 
 const Testimonial = () => {
     const [reviews, setReviews] = useState([])
@@ -45,10 +46,16 @@ const Testimonial = () => {
 
                     {
                         reviews.map(review => <SwiperSlide key={review._id}>
-                           
+                            <Rating className='lg:ml-[575px] mt-10'
+                                style={{ maxWidth: 180 }}
+                                value={review.rating}
+                                readOnly
+                            />
+                            <FaHands className='h-28 w-52 lg:ml-[565px]'></FaHands>
+                            
 
                             <div className='m-20 text-center'>
-                                <p className='w-[500px]  lg:ml-[310px] mb-3'>{review.campname}</p>
+                                <p className='mb-3 text-3xl font-medium'>{review.campname}</p>
                                 <h3 className='text-2xl font-bold text-[#D99904]'>{review.feedback}</h3>
                             </div>
                         </SwiperSlide>)
