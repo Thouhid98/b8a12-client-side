@@ -31,8 +31,10 @@ const UserProfile = () => {
                 <div className="space-y-4 text-center divide-y dark:divide-gray-700">
                     <div className="my-2 space-y-1">
                         <h2 className="text-xl font-semibold sm:text-2xl">{userProfile.name}</h2>
-                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">Participant </p>
+                        <p className="px-5 text-xs sm:text-base text-blue-300">Participant </p>
                         <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.email} </p>
+                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.number} </p>
+                        <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.address} </p>
 
                     <Link to={`/dashboard/userupdate-profile/${user.email}`}>
                     <button className="btn btn-sm mt-4 bg-blue-400 text-white">Edit Profile</button>

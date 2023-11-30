@@ -76,7 +76,7 @@ const Navbar = () => {
                 {
                     user ?
                         <>
-                            <p className="text-xl font-bold text-white">{user.displayName}</p>
+                            <p className="text-normal font-medium text-white">{user.email}</p>
                             <div className="flex-none gap-2 mr-4">
 
                                 <div className="dropdown dropdown-end">

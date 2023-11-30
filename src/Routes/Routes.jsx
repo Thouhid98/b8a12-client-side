@@ -21,6 +21,8 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import UserReview from "../pages/Dashboard/User/UserReview";
 import Allreviews from "../pages/Dashboard/User/Allreviews";
 import ProfileUpdate from "../pages/Dashboard/User/ProfileUpdate";
+import UpdateOrganizerProfile from "../pages/Dashboard/Organizer/UpdateOrganizerProfile";
+import UpdateProfessionalsProfile from "../pages/Dashboard/Professionals/UpdateProfessionalsProfile";
 
 export const router = createBrowserRouter([
     {
@@ -107,6 +109,10 @@ export const router = createBrowserRouter([
                 element: <OrganizerProfile></OrganizerProfile>
             },
             {
+                path:'organizerupdate-profile/:email',
+                element:<UpdateOrganizerProfile></UpdateOrganizerProfile>
+            },
+            {
                 path: 'add-a-camp',
                 element: <AddCamps></AddCamps>
             },
@@ -128,6 +134,10 @@ export const router = createBrowserRouter([
             {
                 path:'professionals-profile',
                 element:<ProfessionalsProfile></ProfessionalsProfile>
+            },
+            {
+                path:'updateprofessional-profile/:email',
+                element:<UpdateProfessionalsProfile></UpdateProfessionalsProfile>
             }
 
         ]

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const OrganizerProfile = () => {
 
@@ -26,7 +27,7 @@ const OrganizerProfile = () => {
     return (
         <>
             <div>
-               
+
                 <div className="flex my-8 lg:ml-[350px] flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
                     <img src={organizer.photo} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                     <div className="space-y-4 text-center divide-y dark:divide-gray-700">
@@ -34,6 +35,11 @@ const OrganizerProfile = () => {
                             <h2 className="text-xl font-semibold sm:text-2xl">{organizer.name}</h2>
                             <p className="px-5 text-xs sm:text-base dark:text-gray-400">Healthcare Organizer </p>
                             <p className="px-5 text-xs sm:text-base dark:text-gray-400">{organizer.email}</p>
+                            <p className="px-5 text-xs sm:text-base dark:text-gray-400">{organizer.address}</p>
+
+                            <Link to={`/dashboard/organizerupdate-profile/${user.email}`}>
+                                <button className="btn btn-sm mt-4 bg-blue-400 text-white">Edit Profile</button>
+                            </Link>
                         </div>
 
 
