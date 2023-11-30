@@ -1,5 +1,5 @@
 import { useContext} from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -10,6 +10,7 @@ const UserReview = () => {
     console.log(_id, campId, campname);
     const {user} = useContext(AuthContext);
     const axisoSecure = useAxiosSecure()
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset } = useForm()
     const onSubmit = async (data) => {
@@ -33,6 +34,7 @@ const UserReview = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/dashboard/reviews')
             }
     
         console.log(data);
@@ -41,7 +43,7 @@ const UserReview = () => {
 
     return (
         <div>
-            <h2 className="text-5xl text-black font-bold text-center mb-8">Give Opinion</h2>
+            <h2 className="text-5xl text-black font-bold text-center mb-8">Give Feedbacks</h2>
             <div className="ml-8 mb-20 bg-gray-100 p-20  rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="">
 

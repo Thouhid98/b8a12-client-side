@@ -19,6 +19,7 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import ProfessionalsProfile from "../pages/Dashboard/Professionals/ProfessionalsProfile";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import UserReview from "../pages/Dashboard/User/UserReview";
+import Allreviews from "../pages/Dashboard/User/Allreviews";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
                 path:'ratings/:id',
                 element:<UserReview></UserReview>,
                 loader: ({ params }) => fetch(`http://localhost:5000/feedback/${params.id}`)
+            },
+            {
+                path:'reviews',
+                element:<Allreviews></Allreviews>
             },
 
             {

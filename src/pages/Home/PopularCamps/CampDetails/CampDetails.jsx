@@ -4,8 +4,12 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAdmin from "../../../../hooks/useAdmin";
+import useOrganizer from "../../../../hooks/useOrganizer";
 
 const CampDetails = () => {
+    const isAdmin = useAdmin()
+    const isOrganizer = useOrganizer()
     const axiosSecure = useAxiosSecure()
     const campdetails = useLoaderData()
     console.log(campdetails);
@@ -76,7 +80,10 @@ const CampDetails = () => {
 
                         {/* modal  */}
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="btn my-3  bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Join Camp</button>
+
+                        <button className="btn my-3 mb-20 bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Join Camp</button>
+                        
+                        
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">
                                 <h3 className="font-bold text-lg">Want to Join The Camp!</h3>

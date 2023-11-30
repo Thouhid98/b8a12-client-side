@@ -96,8 +96,8 @@ const Dashboard = () => {
                                         Payment History</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/'>
-                                        Add Review</NavLink>
+                                    <NavLink to='/dashboard/reviews'>
+                                        Your Reviews</NavLink>
                                 </li>
                             </>:''
                         }        
