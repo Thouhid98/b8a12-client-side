@@ -47,19 +47,13 @@ const RegisteredCamps = () => {
         const feedback = form.feedback.value;
         const rating = form.rating.value;
         console.log(feedback, rating);
-
-        //
-
-        
-        if (user && user.email) {
-            
-            const feedBack = {
-                
+     
+        if (user && user.email) {          
+            const feedBack = {              
                 feedback: feedback,
                 rating: parseInt(rating),
                 name: name,
                 email: user.email,
-
             }
             axiosSecure.post('/feedback-and-rating', feedBack)
                 .then(res => {
@@ -136,55 +130,11 @@ const RegisteredCamps = () => {
                                             </th>
                                         </Link>
 
-
-                                        {/* <th> */}
-                                            {/* modal  */}
-                                            {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                            {/* <button className="btn my-3  bg-orange-500 text-white" onClick={() => document.getElementById('my_modal_1', item.campname).showModal()}>Review</button>
-                                            <dialog id="my_modal_1" className="modal">
-                                                <div className="modal-box">
-                                                    <h3 className="font-bold text-lg mb-3">Want to Give Feedbacks!</h3>
-
-
-                                                    <div className="modal-action ">
-
-                                                        <form onSubmit={(e) => handleFeedback(e, item.campname)} method="dialog">
-
-                                                            <div className="lg:-ml-[360px] -mt-4">
-                                                                <label className="label">
-                                                                    <span className="label-text">Give Feedback*</span>
-                                                                </label>
-
-                                                
-                                                                
-                                                                <input name="feedback" type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" />
-
-                                                            </div>
-
-                                                            <div className="lg:-ml-[360px] ">
-                                                                <label className="label">
-                                                                    <span className="label-text">Rating</span>
-                                                                </label>
-
-                                                               
-                                                                <input name="rating" type="number" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" />
-                                                            </div>
-
-
-                                                            <button className="btn text-white bg-orange-500">Submit</button>
-
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                            </dialog>
-                                        </th> */}
-
-
-
                                         <th>
-                                            {/* <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button> */}
-                                            <button className="btn btn-warning text-white">Pay</button>
+                                            <Link to='/dashboard/payment'>
+                                            <button className="btn btn-sm btn-warning text-white">Pay</button>
+                                            </Link>
+                                            
                                         </th>
                                         
                                     </tr>)

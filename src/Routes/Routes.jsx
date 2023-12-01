@@ -27,6 +27,7 @@ import AdminRoute from "./AdminRoute";
 import OrganizerRoute from "./OrganizerRoute";
 import ProfessionalsRoute from "./ProfessionalsRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
                 path: 'registered-camps/:email',
                 element: <PrivateRoutes><RegisteredCamps></RegisteredCamps></PrivateRoutes>,
                 // loader: ({ params }) => fetch(`http://localhost:5000/registered-camps/${params.email}`)
+            },
+            {
+                path:'payment',
+                element:<Payment></Payment>
             },
 
 

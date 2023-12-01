@@ -43,7 +43,7 @@ const ManageRegisterCamp = () => {
         axiosSecure.delete(`/delete-registration/${item._id}`)
             .then(res => {
                 console.log(res.data);
-                if (res.data.modifiedCount > 0) {
+                if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Cancel Registration Successfull!",
                         text: ' Cancel Registration',
