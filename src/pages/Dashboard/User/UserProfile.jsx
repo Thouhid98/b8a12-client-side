@@ -13,7 +13,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosSecure.get(`/participant-profile/${user.email}`);
+                const response = await axiosSecure.get(`/participant-profile/${user?.email}`);
                 setuserProfile(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -36,7 +36,7 @@ const UserProfile = () => {
                         <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.number} </p>
                         <p className="px-5 text-xs sm:text-base dark:text-gray-400">{userProfile.address} </p>
 
-                    <Link to={`/dashboard/userupdate-profile/${user.email}`}>
+                    <Link to={`/dashboard/userupdate-profile/${user?.email}`}>
                     <button className="btn btn-sm mt-4 bg-blue-400 text-white">Edit Profile</button>
                     </Link>
 

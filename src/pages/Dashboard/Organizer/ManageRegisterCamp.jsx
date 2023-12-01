@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageRegisterCamp = () => {
     const axiosSecure = useAxiosSecure()
@@ -8,18 +9,52 @@ const ManageRegisterCamp = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await axiosSecure.get('/manage-registered-camps');
-            setRegister(response.data);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                const response = await axiosSecure.get('/manage-registered-camps');
+                setRegister(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
-    
-        fetchData();
-      }, []);
 
-   
+        fetchData();
+    }, []);
+
+
+    const handleAcceptPayment = item => {
+
+        // console.log('clicked Id pending', item._id);
+
+        axiosSecure.patch(`/accept-payment/${item._id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Make Payment Successfull!",
+                        text: ' Payment Accepted',
+                        icon: "success",
+                        timer: 2500
+                    });
+                }
+            })
+    }
+
+    const handleDeleteItem = item =>{
+        axiosSecure.delete(`/delete-registration/${item._id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Cancel Registration Successfull!",
+                        text: ' Cancel Registration',
+                        icon: "success",
+                        timer: 2500
+                    });
+                }
+            })
+    }
+
+
 
     return (
         <div>
@@ -39,8 +74,7 @@ const ManageRegisterCamp = () => {
                                     <th>Name</th>
                                     <th>Date & Time</th>
                                     <th>Payment Status</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th>Cancel</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,12 +98,22 @@ const ManageRegisterCamp = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            {item.name}
+                                            {item.campname}
                                         </td>
                                         <td>
                                             {item.date}
                                         </td>
-                                        <td>$ {item.payment}</td>
+
+                                        <td>
+                                    {
+                                        item.payment ==='pending' ? <button onClick={() => handleAcceptPayment(item)}  className='btn btn-secondary btn-xs ml-3'>Pending</button> :
+                                        <th>
+                                        <button className="btn btn-primary btn-xs">Accepted</button>
+                                        </th>
+                                    }
+                                     </td>
+
+
 
                                         {/* <Link to={`/dashboard/updatecamps/${item._id}`}>
                                             <th>
@@ -79,7 +123,7 @@ const ManageRegisterCamp = () => {
 
 
                                         <th>
-                                            {/* <button onClick={() => handleDeleteItem(item._id)} className="btn btn-warning text-white btn-sm">Delete </button> */}
+                                            <button onClick={() => handleDeleteItem(item)} className="btn bg-red-500 text-white btn-sm">Cancel </button>
                                         </th>
                                     </tr>)
                                 }
