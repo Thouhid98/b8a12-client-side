@@ -9,7 +9,7 @@ const Payment = () => {
     return (
         <div>
             <Elements stripe={stripePromise}>
-                     <CheckoutForm></CheckoutForm>
+                    <CheckoutForm></CheckoutForm>
             </Elements>
         </div>
     );

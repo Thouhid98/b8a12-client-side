@@ -133,7 +133,7 @@ const RegisteredCamps = () => {
                                         <th>
                                             <Link to='/dashboard/payment'>
                                             <button className="btn btn-sm btn-warning text-white">Pay</button>
-                                            </Link>
+                                            </Link>      
                                             
                                         </th>
                                         

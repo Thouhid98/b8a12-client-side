@@ -37,7 +37,7 @@ const Navbar = () => {
                         {
                             isAdmin && user ?
                                 <>
-                                    <Link to='/available-camps'>Available Camps</Link>
+                                    <Link to='/'>Available Camps</Link>
                                     <Link to='/dashboard/admin-profile'>Dashboard</Link>
                                 </>
                                 : ''
@@ -45,7 +45,7 @@ const Navbar = () => {
                         {
                             user && isOrganizer ?
                                 <>
-                                    <Link to='/available-camps'>Available Camps</Link>
+                                    <Link to='/'>Available Camps</Link>
                                     <Link to='/dashboard/organizer-profile'>Dashboard</Link>
                                 </> : ''
 
@@ -53,7 +53,7 @@ const Navbar = () => {
                         {
                             user && isProfessionals ?
                                 <>
-                                    <Link to='/available-camps'>Available Camps</Link>
+                                    <Link to='/'>Available Camps</Link>
                                     <Link to='/dashboard/professionals-profile'>Dashboard</Link>
                                 </> : ''
 
@@ -61,7 +61,7 @@ const Navbar = () => {
                         {
                             user && !isAdmin && !isOrganizer && !isProfessionals ?
                                 <>
-                                    <Link to='/available-camps'>Available Camps</Link>
+                                    <Link to='/'>Available Camps</Link>
                                     <Link to='/dashboard/user-profile'>Dashboard</Link>
                                 </>
                                 : ''

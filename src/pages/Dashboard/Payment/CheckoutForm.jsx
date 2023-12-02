@@ -2,6 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -10,13 +13,15 @@ const CheckoutForm = () => {
     const [error, setError] = useState('')
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('')
+    const { user } = useContext(AuthContext)
+    // const navigate = useNavigate() 
 
-
+    // Load All Camp Data 
     const [campRegister, setRegister] = useState([])
     console.log(campRegister);
     const totalPrice = campRegister?.reduce((total, item) => total + item.campfee, 0)
     console.log(totalPrice);
-    const { user } = useContext(AuthContext)
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -87,6 +92,30 @@ const CheckoutForm = () => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('Transaction Id', paymentIntent.id);
                 setTransactionId(paymentIntent.id)
+
+                // Now save Payment History in the database 
+                const payment = {
+                    email: user.email,
+                    campfee: totalPrice,
+                    transactionId: paymentIntent.id,
+                    date: new Date(),
+                    registerId: campRegister.map(item => item._id),
+                    campId: campRegister.map(item => item.campId),
+                    status: 'Accepted'
+                }
+                const res = await axiosSecure.post('/payments', payment)
+                console.log('Payment Saved',res.data);
+                // refetch()
+                if (res.data?.paymentResult?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Thank you for Parchase",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // navigate('/dashboard/paymenthistory')
+                }
             }
         }
 
