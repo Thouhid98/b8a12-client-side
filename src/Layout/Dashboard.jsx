@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import useOrganizer from "../hooks/useOrganizer";
 import useAdmin from "../hooks/useAdmin";
 import useProfessionals from "../hooks/useProfessionals";
+import { FaBook, FaEnvelope, FaHome, FaIdBadge, FaList, FaPaypal, FaRegCommentDots, FaUsers, FaUtensils } from "react-icons/fa";
 
 
 const Dashboard = () => {
@@ -24,19 +25,22 @@ const Dashboard = () => {
                                 <>
                                     <li >
                                         <NavLink to='/dashboard/organizer-profile'>
+                                            <FaHome></FaHome>
                                             Organizer Home</NavLink>
                                     </li>
                                     <li >
                                         <NavLink to='/dashboard/add-a-camp'>
-
+                                        <FaUtensils></FaUtensils>
                                             Add Camps</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to='/dashboard/manage-camps'>
+                                        <FaList></FaList>
                                             Manage Camps</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to='/dashboard/manage-registered-camps'>
+                                        <FaBook></FaBook>
                                             Registered Camps </NavLink>
                                     </li>
                                     
@@ -51,6 +55,7 @@ const Dashboard = () => {
                             user && isProfessionals ? <>
                                 <li>
                                     <NavLink to='/dashboard/Professionals-profile'>
+                                    <FaHome></FaHome>
                                     Professionals Profile</NavLink>
                                 </li>
                                 
@@ -62,10 +67,12 @@ const Dashboard = () => {
                             user && isAdmin ? <>
                                 <li>
                                     <NavLink to='/dashboard/admin-profile'>
+                                    <FaHome></FaHome>
                                         Admin Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/allusers'>
+                                    <FaUsers></FaUsers>
                                         Manage Users</NavLink>
                                 </li>
                             </>
@@ -78,6 +85,7 @@ const Dashboard = () => {
                              <>
                                 <li>
                                     <NavLink to={`/dashboard/participant-profile/${user?.email}`}>
+                                    <FaIdBadge />
                                         User Profile</NavLink>
                                 </li>
                                 {/* <li>
@@ -87,16 +95,19 @@ const Dashboard = () => {
                                 
                                 <li>
                                     <NavLink to={`/dashboard/registered-camps/${user?.email}`}>
+                                    <FaBook></FaBook>
                                         Registered Camps</NavLink>
                                 </li>
 
                                 
                                 <li>
-                                    <NavLink to='/'>
+                                    <NavLink to="/dashboard/payment-history">
+                                       <FaPaypal></FaPaypal>
                                         Payment History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/reviews'>
+                                    <FaRegCommentDots />
                                         Your Reviews</NavLink>
                                 </li>
                             </>:''
@@ -109,11 +120,13 @@ const Dashboard = () => {
 
                         <li>
                             <NavLink to='/'>
+                                <FaHome></FaHome>
                                 Home</NavLink>
                         </li>
                         
                         <li>
                             <NavLink to='/contact-us'>
+                            <FaEnvelope />
                                 Contact</NavLink>
                         </li>
                     </ul>

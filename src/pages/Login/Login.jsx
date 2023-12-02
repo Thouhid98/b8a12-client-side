@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import logo from '../../assets/login/authentication.gif'
 
 const Login = () => {
     const { signinUser } = useContext(AuthContext)
@@ -41,7 +42,7 @@ const Login = () => {
         <div >
             <div className="flex ml-40 gap-8 mb-20 p-12">
                 <div className="">
-                    <img className="w-[400px] h-[350px] my-16" src='' alt="" />
+                    <img className="w-[400px] h-[350px] my-16" src={logo} alt="" />
                 </div>
                 <div className="border lg:w-[500px] rounded-lg p-12 h-[650px]">
                     <h2 className="text-4xl text-center my-4 text-[#444444] font-bold">Login</h2>
@@ -73,7 +74,7 @@ const Login = () => {
                             </div>
 
                             <label className="label">
-                                <a href="/register" className="label-text-alt link link-hover text-base ml-40 text-center">Don't Have an Account?</a>
+                                <a href="/register" className="label-text-alt link link-hover text-base ml-28 text-center">Don't Have an Account?</a>
                             </label>
                         </form>
 

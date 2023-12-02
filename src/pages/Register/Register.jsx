@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import logo from '../../assets/login/authentication.gif'
 
 const Register = () => {
     const axiosPublic = useAxiosPublic(); 
@@ -39,7 +40,7 @@ const Register = () => {
                 axiosPublic.post('/users', userInfo)
                 .then(res=>{
                     console.log('add to database');
-                    if(res.data.insertedId >1){
+                    if(res.data.insertedId >0){
                         Swal.fire({
                             title: 'Success!',
                             text: 'SignUp Successfull',
@@ -61,7 +62,7 @@ const Register = () => {
         <div >
         <div className="flex ml-40 gap-8 mb-20 p-12">
             <div className="">
-                <img className="w-[400px] h-[350px] my-16" src='' alt="" />
+                <img className="w-[400px] h-[350px] my-16" src={logo} alt="" />
             </div>
             <div className="border lg:w-[500px] rounded-lg p-12 h-[700px]">
                 <h2 className="text-4xl text-center my-4 text-[#444444] font-bold">SignUp</h2>

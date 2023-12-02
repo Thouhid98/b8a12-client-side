@@ -28,12 +28,14 @@ import OrganizerRoute from "./OrganizerRoute";
 import ProfessionalsRoute from "./ProfessionalsRoute";
 import PrivateRoutes from "./PrivateRoutes";
 import Payment from "../pages/Dashboard/Payment/Payment";
-import CheckoutForm from '../pages/Dashboard/Payment/CheckoutForm';
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
+import Error from "../pages/Error/Error";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: '/',
@@ -99,6 +101,10 @@ export const router = createBrowserRouter([
             {
                 path:'payment',
                 element:<Payment></Payment>
+            },
+            {
+                path:'payment-history',
+                element:<PaymentHistory></PaymentHistory>
             },
 
 

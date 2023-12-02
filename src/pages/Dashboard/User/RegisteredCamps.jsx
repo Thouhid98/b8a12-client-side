@@ -93,7 +93,7 @@ const RegisteredCamps = () => {
                                     <th>Date & Time</th>
                                     <th>Payment Status</th>
                                     <th>Review</th>
-                                    <th>Delete</th>
+                                    <th>Payment</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,7 +136,8 @@ const RegisteredCamps = () => {
                                             </Link>      
                                             
                                         </th>
-                                        
+
+                                                                    
                                     </tr>)
                                 }
 
